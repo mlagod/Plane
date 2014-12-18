@@ -21,7 +21,7 @@ public class Plane extends JLabel {
 
 	BufferedImage image;
 	
-	String path = "C:\\Users\\Mateusz\\Desktop\\unnamed.png";
+	String path = "C:\\Users\\Mateusz\\Documents\\GitHub\\Plane\\Projekt\\unnamed.png";
 	
 	public Plane(){
 		

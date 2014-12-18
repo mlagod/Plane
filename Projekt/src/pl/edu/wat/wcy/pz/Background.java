@@ -19,7 +19,7 @@ public class Background extends JPanel {
 
 	BufferedImage image;
 	
-	String path = "C:\\Users\\Mateusz\\workspace\\Projekt\\map_of_europe.jpg";
+	String path = "C:\\Users\\Mateusz\\Documents\\GitHub\\Plane\\Projekt\\map_of_europe.jpg";
 	
 	public Background(){
         
