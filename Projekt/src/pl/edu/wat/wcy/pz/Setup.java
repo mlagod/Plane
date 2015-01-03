@@ -1,10 +1,14 @@
 package pl.edu.wat.wcy.pz;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 public class Setup {
 
 	 static Landings[] landings = new Landings[26];
+	 static List<Plane> planes = new ArrayList<Plane>();
 	 
 	 static Handler h = new Handler();
 	

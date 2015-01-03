@@ -11,7 +11,7 @@ public class Gui {
 	
 	Handler handler = new Handler();
 	
-	Plane plane = new Plane();
+	PlaneGUI plane = new PlaneGUI();
 	
 	//Landings landings = new Landings();
 	
@@ -24,8 +24,9 @@ public class Gui {
 		
 		frame.add(background);
 		background.add(plane);
-		plane.setBounds(100,100,100,100);
-		plane.setBounds(300, 300, 100, 100);
+		//plane.setBounds(100,100,100,100);
+		plane.setBounds(Setup.xParam[25], Setup.yParam[25], plane.getPreferredSize().width, plane.getPreferredSize().height);
+		
 		setLandings();
 		frame.setVisible(true);
 	}

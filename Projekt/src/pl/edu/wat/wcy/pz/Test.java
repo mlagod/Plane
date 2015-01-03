@@ -8,6 +8,8 @@ public class Test {
 		Gui gui = new Gui();
 		gui.setup();
 		
+		Flies f = new Flies();
+		f.getFlies();
 		//Database database = new Database();
 		//database.setConnection();
 

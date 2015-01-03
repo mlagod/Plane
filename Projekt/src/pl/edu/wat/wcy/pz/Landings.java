@@ -24,7 +24,5 @@ public class Landings extends JPanel {
 		
 		
 	}
-	
-	
 
 }
