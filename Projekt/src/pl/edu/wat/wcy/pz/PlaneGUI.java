@@ -52,7 +52,7 @@ public void paintComponent(Graphics g){
 
 	 	
         Graphics2D g2d = (Graphics2D) g;
-        g2d.rotate(0,width,height);						// todo: setPlaneDirection Setup.planes.get(0).getPlaneDirection();
+        g2d.rotate(Setup.planes.get(2).getPlaneDirection(),width,height);						// todo: setPlaneDirection Setup.planes.get(0).getPlaneDirection();
         g2d.drawImage(image,0,0,this);
         
      //  System.out.println(""+ setPlaneDirection()+ " "+ Math.toDegrees(setPlaneDirection()));
