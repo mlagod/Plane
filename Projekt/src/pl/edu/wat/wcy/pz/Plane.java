@@ -1,6 +1,6 @@
 package pl.edu.wat.wcy.pz;
 
-public class Plane {
+public class Plane extends Thread {
 
 	
 	private int id;
@@ -85,7 +85,27 @@ public class Plane {
 		double x = (double)Math.abs(xB-xA);
 		double y = (double)Math.abs(yB-yA);
 		
-		double alpha = Math.atan(y/x);
+		double alpha = 0;
+		
+		if(xB == xA && yA > yB ){
+			alpha = Math.toRadians(0);
+		}else if(xB > xA && yB < yA){
+			alpha = Math.atan(x/y);
+		}else if(xB > xA && yB == yA){
+			alpha = Math.toRadians(90);
+		}else if(xB > xA && yB > yA){
+			alpha = Math.toRadians(180);
+			alpha = alpha - Math.atan(x/y);
+		}else if(xB == xA && yB > yA){
+			alpha = Math.toRadians(180);
+		}else if(xB < xA && yB > yA){
+			alpha = Math.toRadians(180);
+			alpha = alpha + Math.atan(x/y);
+		}else if(xB < xA && yB == yA){
+			alpha = Math.toRadians(270);
+		}else if(xB < xA && yB < yA){
+			alpha = (-1) * Math.atan(x/y);
+		}
 		//System.out.println("alfa = " + alpha);
 		planeDirection = alpha;
 		
@@ -99,5 +119,124 @@ public class Plane {
 		
 		setXPosition(Setup.landings[findLanding(fromLanding)].x);
 		setYPosition(Setup.landings[findLanding(fromLanding)].y);
+	}
+
+	@Override
+	public void run() {
+		
+		System.out.println("Watek");
+		move();
+		
+	}
+	
+	public void move(){
+		
+		int start = findLanding(fromLanding);
+		int end = findLanding(toLanding);
+		
+		int xA = Setup.landings[start].x;
+		int yA = Setup.landings[start].y;
+		
+		int xB = Setup.landings[end].x;
+		int yB = Setup.landings[end].y;
+		
+		if(xB == xA && yA > yB ){
+			while(yA > yB){
+			yPosition--;
+			Setup.planesGUI.get(0).repaint();
+			}
+			//alpha = Math.toRadians(0);
+		}else if(xB > xA && yB < yA){
+			
+			while(xB > xA && yB < yA){
+				xPosition++;
+				yPosition--;
+				Setup.planesGUI.get(0).repaint();
+			}
+			
+			if(xB == xA){
+				while(yB != yA){
+				yPosition--;
+				Setup.planesGUI.get(0).repaint();
+				}
+			}else if(yB == yA){
+				xPosition++;
+				Setup.planesGUI.get(0).repaint();
+			}
+			//alpha = Math.atan(x/y);
+		}else if(xB > xA && yB == yA){
+			
+			while( xB > xA){
+				xPosition++;
+				Setup.planesGUI.get(0).repaint();
+			}
+			//alpha = Math.toRadians(90);
+		}else if(xB > xA && yB > yA){
+			
+			while(xB > xA && yB > yA){
+				xPosition++;
+				yPosition++;
+				//System.out.println("x =" + xPosition + " y = " + yPosition);
+				
+				Setup.planesGUI.get(0).repaint();
+				
+			}
+			
+			if(xB == xA){
+				yPosition++;
+				Setup.planesGUI.get(0).repaint();
+			}else if(yB == yA){
+				xPosition++;
+				Setup.planesGUI.get(0).repaint();
+			}
+			//alpha = Math.toRadians(180);
+			//alpha = alpha - Math.atan(x/y);
+		}else if(xB == xA && yB > yA){
+			
+			while(yB > yA){
+				yPosition++;
+				Setup.planesGUI.get(0).repaint();
+			}
+			//alpha = Math.toRadians(180);
+		}else if(xB < xA && yB > yA){
+			
+			while(xB < xA && yB > yA){
+				xPosition--;
+				yPosition++;
+				Setup.planesGUI.get(0).repaint();
+			}
+			if(xB == xA){
+				yPosition++;
+				Setup.planesGUI.get(0).repaint();
+			}else if(yB == yA){
+				xPosition--;
+				Setup.planesGUI.get(0).repaint();
+			}
+			//alpha = Math.toRadians(180);
+			//alpha = alpha + Math.atan(x/y);
+		}else if(xB < xA && yB == yA){
+			
+			while(xB < xA){
+				xPosition--;
+				Setup.planesGUI.get(0).repaint();
+			}
+			//alpha = Math.toRadians(270);
+		}else if(xB < xA && yB < yA){
+			
+			while(xB < xA && yB < yA){
+				xPosition--;
+				yPosition--;
+				Setup.planesGUI.get(0).repaint();
+			}
+			if(xB == xA){
+				yPosition--;
+				Setup.planesGUI.get(0).repaint();
+			}else if(yB == yA){
+				xPosition--;
+				Setup.planesGUI.get(0).repaint();
+			}
+			//alpha = (-1) * Math.atan(x/y);
+		}
+		
 	}
 }

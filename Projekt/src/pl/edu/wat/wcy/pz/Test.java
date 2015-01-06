@@ -26,6 +26,8 @@ public class Test {
 		//database.setConnection();
 		 System.out.println(Setup.planes.size());
 		 System.out.println("planesGUI = "+Setup.planesGUI.size());
+		 
+		 Setup.planes.get(0).start();
 	            }
 	        });
 		 
