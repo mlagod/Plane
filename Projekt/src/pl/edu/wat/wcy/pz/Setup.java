@@ -9,6 +9,7 @@ public class Setup {
 
 	 static Landings[] landings = new Landings[26];
 	 static List<Plane> planes = new ArrayList<Plane>();
+	 static List<PlaneGUI> planesGUI = new ArrayList<PlaneGUI>();
 	 
 	 static Handler h = new Handler();
 	
@@ -33,7 +34,15 @@ public class Setup {
 				
 		
 		}
-	
+/*	
+	public static void setupPlanes(){
+		
+		for(int i = 0; i < Setup.planes.size(); i++){
+			
+		//	planesGUI.add(new PlaneGUI(i));
+		}
+	}
+	*/
 	public static int getId(int x){
 		
 		return id_s[x];

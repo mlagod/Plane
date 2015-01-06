@@ -2,6 +2,7 @@ package pl.edu.wat.wcy.pz;
 
 public class Plane {
 
+	
 	private int id;
 	private int fromLanding;
 	private int toLanding;
@@ -9,16 +10,22 @@ public class Plane {
 	private int yPosition;
 	private double planeDirection;
 	
-	public Plane(int _id, int _fromLanding, int _toLanding){
+	private int idInList;
+	
+	public Plane(int _id, int _fromLanding, int _toLanding, int _idInList){
 		
 		id = _id;
 		fromLanding = _fromLanding;
 		toLanding = _toLanding;
+		idInList = _idInList;
+		
+		setStartPosition();
 		
 		testXML();
 		
 		setPlaneDirection(fromLanding, toLanding);
 		testDirection();
+
 	}
 	
 	public void setXPosition(int _xPosition){
@@ -27,6 +34,14 @@ public class Plane {
 	
 	public void setYPosition(int _yPosition){
 		yPosition = _yPosition;
+	}
+	
+	public int getXPosition(){
+		return xPosition;
+	}
+	
+	public int getYPosition(){
+		return yPosition;
 	}
 	
 	public void testXML(){
@@ -76,12 +91,13 @@ public class Plane {
 		
 	}
 	
-//	public void setDir(){
-//		planeDirection = setPlaneDirection(fromLanding, toLanding);
-//	}
-
 	public double getPlaneDirection(){
 		return planeDirection;
 	}
 	
+	public void setStartPosition(){
+		
+		setXPosition(Setup.landings[findLanding(fromLanding)].x);
+		setYPosition(Setup.landings[findLanding(fromLanding)].y);
+	}
 }

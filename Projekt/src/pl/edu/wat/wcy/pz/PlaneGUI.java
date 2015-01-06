@@ -21,15 +21,22 @@ public class PlaneGUI extends JLabel {
 
 	BufferedImage image;
 	
+	protected int idInList;
+	
+	//static int x = 100;
+	//static int y = 100;
+	
 	String path = "C:\\Users\\Mateusz\\Documents\\GitHub\\Plane\\Projekt\\unnamed.png";
 	
-	public PlaneGUI(){
+	public PlaneGUI(int _idInList){
 		
 		super();
 		setLayout(null);
 		
 		File imageFile = new File(path);
 	        
+		idInList = _idInList;
+		
 	        try{
 	                image = ImageIO.read(imageFile);
 	                
@@ -44,6 +51,12 @@ public class PlaneGUI extends JLabel {
 	        
 	        Dimension dimension = new Dimension(image.getWidth(), image.getHeight());
 	        setPreferredSize(dimension);
+	        
+	     //   setBounds(Setup.planes.get(0).getXPosition(), Setup.planes.get(0).getYPosition(), 100, 100);
+	       // setBounds(x,y,100,100);
+	   //     System.out.println("X = " + x + " Y = " + y + " id in list = " + idInList);
+	     //   x +=100;
+	     //   y += 100;
 	}
 
 public void paintComponent(Graphics g){
@@ -52,7 +65,7 @@ public void paintComponent(Graphics g){
 
 	 	
         Graphics2D g2d = (Graphics2D) g;
-        g2d.rotate(Setup.planes.get(2).getPlaneDirection(),width,height);						// todo: setPlaneDirection Setup.planes.get(0).getPlaneDirection();
+        g2d.rotate(Setup.planes.get(idInList).getPlaneDirection(),width,height);						// todo: setPlaneDirection Setup.planes.get(0).getPlaneDirection();
         g2d.drawImage(image,0,0,this);
         
      //  System.out.println(""+ setPlaneDirection()+ " "+ Math.toDegrees(setPlaneDirection()));
@@ -61,21 +74,4 @@ public void paintComponent(Graphics g){
       //  super.paintComponent(g);
 }
 
-/*
-public double setPlaneDirection(){
-	
-	int x1 = Setup.landings[0].id;
-	int y1 = Setup.yParam[2];
-	
-	int x2 = Setup.xParam[25];
-	int y2 = Setup.yParam[25];
-	
-	double x = (double)Math.abs(x2-x1);
-	double y = (double)Math.abs(y2-y1);
-	
-	System.out.println(x+","+y);
-	double alpha = Math.atan(y/x);
-	return alpha;
-}
-*/
 }

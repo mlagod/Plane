@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Flies {
 
+	static int iterator = 0; // sluzy do przypisania indeksow do idInList, iterowany przy dopisywaniu samolotu do arrayList
 	
 	public void getFlies(){
 	try {
@@ -23,11 +24,9 @@ public class Flies {
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(xmlFile);
 	 
-		//optional, but recommended
-		//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+		
 		doc.getDocumentElement().normalize();
 	 
-		//System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 	 
 		NodeList nList = doc.getElementsByTagName("plane");
 	 
@@ -37,24 +36,20 @@ public class Flies {
 	 
 			Node nNode = nList.item(temp);
 	 
-		//	System.out.println("\nCurrent Element :" + nNode.getNodeName());
 	 
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	 
 				Element eElement = (Element) nNode;
 	 
-				//planes.add(new Plane());
-				//planes.get(temp).setId(Integer.parseInt(""+eElement.getAttribute("id")));
-				//planes.get(temp).setFromLanding(Integer.parseInt(""+eElement.getElementsByTagName("fromId").item(0).getTextContent()));
+				
 				int planeId = Integer.parseInt(eElement.getAttribute("id"));
 				int planeFrom = Integer.parseInt(eElement.getElementsByTagName("fromId").item(0).getTextContent());
 				int planeTo = Integer.parseInt(eElement.getElementsByTagName("toId").item(0).getTextContent());
 				
-				Setup.planes.add(new Plane(planeId, planeFrom, planeTo));
-			//	System.out.println("Plane id : " + eElement.getAttribute("id") +"or = " + planeId);
-			//	System.out.println("First Name : " + eElement.getElementsByTagName("fromId").item(0).getTextContent() + "or = " + planeFrom);
-			//	System.out.println("Last Name : " + eElement.getElementsByTagName("toId").item(0).getTextContent() + "or + " + planeTo);
-	 
+				Setup.planes.add(new Plane(planeId, planeFrom, planeTo,iterator));
+				Setup.planesGUI.add(new PlaneGUI(iterator));
+				iterator++;
+				
 			}
 		}
 	    } catch (Exception e) {
