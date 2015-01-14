@@ -19,11 +19,12 @@ public class Plane extends Thread {
 		toLanding = _toLanding;
 		idInList = _idInList;
 		
-		setStartPosition();
+		
 		
 		testXML();
 		
 		setPlaneDirection(fromLanding, toLanding);
+		setStartPosition();
 		testDirection();
 
 	}
@@ -63,8 +64,8 @@ public class Plane extends Thread {
 		
 		for(int i = 0; x != id; i++){
 			
-			if(id == Setup.landings[i].id){
-				x = Setup.landings[i].id;
+			if(id == Setup.landings[i].getId()){
+				x = Setup.landings[i].getId();
 				index = i;
 			}
 		}
@@ -76,11 +77,11 @@ public class Plane extends Thread {
 		int indexA = findLanding(idA);
 		int indexB = findLanding(idB);
 		
-		int xA = Setup.landings[indexA].x;
-		int yA = Setup.landings[indexA].y;
+		int xA = Setup.landings[indexA].getXparam();
+		int yA = Setup.landings[indexA].getYparam();
 		
-		int xB = Setup.landings[indexB].x;
-		int yB = Setup.landings[indexB].y;
+		int xB = Setup.landings[indexB].getXparam();
+		int yB = Setup.landings[indexB].getYparam();
 		
 		double x = (double)Math.abs(xB-xA);
 		double y = (double)Math.abs(yB-yA);
@@ -117,8 +118,11 @@ public class Plane extends Thread {
 	
 	public void setStartPosition(){
 		
-		setXPosition(Setup.landings[findLanding(fromLanding)].x);
-		setYPosition(Setup.landings[findLanding(fromLanding)].y);
+		setXPosition(Setup.landings[findLanding(fromLanding)].getXparam());
+		setYPosition(Setup.landings[findLanding(fromLanding)].getYparam());
+		System.out.println("X = " + Setup.landings[findLanding(fromLanding)].getXparam());
+		System.out.println("Y = " + Setup.landings[findLanding(fromLanding)].getYparam());
+		
 	}
 
 	@Override
@@ -129,21 +133,40 @@ public class Plane extends Thread {
 		
 	}
 	
+	public void waitForMove(){
+		try {
+			Thread.sleep(20);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void showMove(){
+		
+		Gui.background.validate();
+		waitForMove();
+		//this.setPlaneDirection(idA, idB);
+		Setup.planesGUI.get(idInList).repaint();
+	}
+	
 	public void move(){
 		
 		int start = findLanding(fromLanding);
 		int end = findLanding(toLanding);
 		
-		int xA = Setup.landings[start].x;
-		int yA = Setup.landings[start].y;
+		int xA = Setup.landings[start].getXparam();
+		int yA = Setup.landings[start].getYparam();
 		
-		int xB = Setup.landings[end].x;
-		int yB = Setup.landings[end].y;
+		int xB = Setup.landings[end].getXparam();
+		int yB = Setup.landings[end].getYparam();
 		
 		if(xB == xA && yA > yB ){
 			while(yA > yB){
 			yPosition--;
-			Setup.planesGUI.get(0).repaint();
+			
+			showMove();
+			//Setup.planesGUI.get(0).repaint();
 			}
 			//alpha = Math.toRadians(0);
 		}else if(xB > xA && yB < yA){
@@ -151,43 +174,50 @@ public class Plane extends Thread {
 			while(xB > xA && yB < yA){
 				xPosition++;
 				yPosition--;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			
 			if(xB == xA){
 				while(yB != yA){
 				yPosition--;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 				}
 			}else if(yB == yA){
 				xPosition++;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			//alpha = Math.atan(x/y);
 		}else if(xB > xA && yB == yA){
 			
 			while( xB > xA){
 				xPosition++;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			//alpha = Math.toRadians(90);
 		}else if(xB > xA && yB > yA){
 			
-			while(xB > xA && yB > yA){
+			while((xB > xA) && (yB > yA)){
 				xPosition++;
 				yPosition++;
 				//System.out.println("x =" + xPosition + " y = " + yPosition);
-				
-				Setup.planesGUI.get(0).repaint();
-				
+				//Gui.background.validate();
+				//waitForMove();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			
 			if(xB == xA){
 				yPosition++;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}else if(yB == yA){
 				xPosition++;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			//alpha = Math.toRadians(180);
 			//alpha = alpha - Math.atan(x/y);
@@ -195,7 +225,8 @@ public class Plane extends Thread {
 			
 			while(yB > yA){
 				yPosition++;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			//alpha = Math.toRadians(180);
 		}else if(xB < xA && yB > yA){
@@ -203,14 +234,17 @@ public class Plane extends Thread {
 			while(xB < xA && yB > yA){
 				xPosition--;
 				yPosition++;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			if(xB == xA){
 				yPosition++;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}else if(yB == yA){
 				xPosition--;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			//alpha = Math.toRadians(180);
 			//alpha = alpha + Math.atan(x/y);
@@ -218,7 +252,8 @@ public class Plane extends Thread {
 			
 			while(xB < xA){
 				xPosition--;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			//alpha = Math.toRadians(270);
 		}else if(xB < xA && yB < yA){
@@ -226,14 +261,17 @@ public class Plane extends Thread {
 			while(xB < xA && yB < yA){
 				xPosition--;
 				yPosition--;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			if(xB == xA){
 				yPosition--;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}else if(yB == yA){
 				xPosition--;
-				Setup.planesGUI.get(0).repaint();
+				//Setup.planesGUI.get(0).repaint();
+				showMove();
 			}
 			//alpha = (-1) * Math.atan(x/y);
 		}

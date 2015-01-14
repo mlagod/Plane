@@ -18,7 +18,7 @@ public class Infogui extends JFrame {
 
 	Database database = new Database();
 	
-	JLabel[] atributes = new JLabel[3];  // przechowuje labelki do wyswietlenia jaki kraj, jakie miasto i jaki port lotniczy
+	JLabel[] atributes = new JLabel[5];  // przechowuje labelki do wyswietlenia jaki kraj, jakie miasto i jaki port lotniczy
 
 	
 	JPanel p = new JPanel();
@@ -32,7 +32,7 @@ public class Infogui extends JFrame {
 		setSize(300,130);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 5; i++){
 			
 			database.setConnection(database.queries[i], Database.cityId);
 			atributes[i] = new JLabel(Database.data);
@@ -49,7 +49,7 @@ public class Infogui extends JFrame {
 		
 		p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
 		p.setBackground(new Color(0,179,230));
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < 5; i++){
 			
 			p.add(atributes[i]);
 			atributes[i].setAlignmentX(atributes[i].CENTER_ALIGNMENT);

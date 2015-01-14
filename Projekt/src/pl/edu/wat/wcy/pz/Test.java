@@ -27,7 +27,9 @@ public class Test {
 		 System.out.println(Setup.planes.size());
 		 System.out.println("planesGUI = "+Setup.planesGUI.size());
 		 
-		 Setup.planes.get(0).start();
+		 for(int i = 0; i < Setup.planes.size(); i++){
+		 Setup.planes.get(i).start();
+		 }
 	            }
 	        });
 		 

@@ -1,24 +1,29 @@
 package pl.edu.wat.wcy.pz;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.Color;
 import java.awt.event.*;
 
 public class Gui {
 
 	JFrame frame = new JFrame("Firma lotnicza - projekt - Mateusz Lagod I2A3S1");
 	
-	Background background = new Background();
+	static Background background = new Background();
 	
 	Handler handler = new Handler();
 	
-	PlaneGUI plane = new PlaneGUI(0);
+	//PlaneGUI plane = new PlaneGUI(0);
 	
-	
+	//JPanel dbg = new JPanel();
 	//Landings landings = new Landings();
 	
 	
 	public void setup(){
 		
+		
+		//frame.setLayout(null);
 		frame.setSize(1200,860);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -26,6 +31,8 @@ public class Gui {
 		frame.add(background);
 		
 		setLandings();
+		
+		
 		frame.setVisible(true);
 		
 		
@@ -37,7 +44,7 @@ public class Gui {
 		Setup.setupLandings();
 
 		for(int i = 0; i < 26; i++){
-			Setup.landings[i].setBounds(Setup.landings[i].x, Setup.landings[i].y, 20, 20);
+			Setup.landings[i].setBounds(Setup.landings[i].getXparam(), Setup.landings[i].getYparam(), 20, 20);
 			
 		background.add(Setup.landings[i]);
 		

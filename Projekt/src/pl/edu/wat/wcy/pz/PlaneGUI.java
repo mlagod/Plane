@@ -64,14 +64,29 @@ public void paintComponent(Graphics g){
 	 	double height = (double) getPreferredSize().getHeight()/2;
 
 	 	
+	 	
         Graphics2D g2d = (Graphics2D) g;
-        g2d.rotate(Setup.planes.get(idInList).getPlaneDirection(),width,height);						// todo: setPlaneDirection Setup.planes.get(0).getPlaneDirection();
+        g2d.rotate(Setup.planes.get(idInList).getPlaneDirection(),width,height);
+       // setBounds(Setup.planes.get(idInList).getXPosition(), Setup.planes.get(idInList).getYPosition(), 100, 100);
+     //   super.paintComponent(g);
+        updatePosition();
         g2d.drawImage(image,0,0,this);
+        
+        
+        
+       System.out.println("PlaneGUI"+Setup.planes.get(0).getXPosition()+" " + Setup.planes.get(0).getYPosition());
         
      //  System.out.println(""+ setPlaneDirection()+ " "+ Math.toDegrees(setPlaneDirection()));
     //  System.out.println(width+ " " + height);
        
-      //  super.paintComponent(g);
+        
+}
+
+
+public void updatePosition(){
+	
+	setBounds(Setup.planes.get(idInList).getXPosition(), Setup.planes.get(idInList).getYPosition(), 100, 100);
+
 }
 
 }

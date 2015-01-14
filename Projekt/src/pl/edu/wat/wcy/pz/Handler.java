@@ -22,7 +22,7 @@ public class Handler implements MouseListener{
 		
 		if(o == Setup.landings[i]){
 			
-		Database.cityId = "" + Setup.landings[i].id ;
+		Database.cityId = "" + Setup.landings[i].getId() ;
 		System.out.println(Database.cityId);
 		
 		}

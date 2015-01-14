@@ -7,7 +7,11 @@ public class Database {
 	
 	String[] queries = {"SELECT country FROM landings WHERE id = ", //0
 						"SELECT city FROM landings WHERE id = ",	//1
-						"SELECT name FROM landings WHERE id = "};	//2
+						"SELECT name FROM landings WHERE id = ",	//2
+						"SELECT iata FROM landings WHERE id = ",	//3
+						"SELECT icao FROM landings WHERE id = "};	//4
+	
+	String[] planeQueries = {};
 	
 	String connection = "jdbc:mysql://localhost:3306/projekt?user=root&password=programowanieZdarzeniowe";
 	

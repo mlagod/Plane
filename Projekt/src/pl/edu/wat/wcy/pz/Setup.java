@@ -24,9 +24,9 @@ public class Setup {
 		for(int i = 0; i < 26; i++){
 			
 			landings[i] = new Landings();
-			landings[i].x = xParam[i];
-			landings[i].y = yParam[i];
-			landings[i].id = id_s[i];
+			landings[i].setX(xParam[i]);
+			landings[i].setY(yParam[i]);
+			landings[i].setID(id_s[i]);
 			
 			landings[i].addMouseListener(h);
 			//h.portId = landings[i].id;
