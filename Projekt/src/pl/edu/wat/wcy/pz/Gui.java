@@ -13,6 +13,7 @@ public class Gui {
 	static Background background = new Background();
 	
 	Handler handler = new Handler();
+	PlaneHandler ph = new PlaneHandler();
 	
 	//PlaneGUI plane = new PlaneGUI(0);
 	
@@ -59,6 +60,10 @@ public class Gui {
 			Setup.planesGUI.get(i).setBounds(Setup.planes.get(i).getXPosition(), Setup.planes.get(i).getYPosition(), 100, 100);
 			background.add(Setup.planesGUI.get(i));
 			
+		}
+		
+		for(int i = 0; i < Setup.planesGUI.size(); i++){
+			Setup.planesGUI.get(i).addMouseListener(ph);
 		}
 		
 	}

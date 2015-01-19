@@ -29,6 +29,7 @@ public class Test {
 		 
 		 for(int i = 0; i < Setup.planes.size(); i++){
 		 Setup.planes.get(i).start();
+		 
 		 }
 	            }
 	        });

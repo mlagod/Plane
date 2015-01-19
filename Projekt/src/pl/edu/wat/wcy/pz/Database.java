@@ -11,11 +11,20 @@ public class Database {
 						"SELECT iata FROM landings WHERE id = ",	//3
 						"SELECT icao FROM landings WHERE id = "};	//4
 	
-	String[] planeQueries = {};
+	String[] planeQueries = {"SELECT producer FROM planes WHERE id = ",
+							 "SELECT model FROM planes WHERE id = ",
+							 "SELECT registration FROM planes WHERE id ="}; // info o samolocie
+	
+	String[] planeLandingQueries = {"SELECT country FROM landings WHERE id = ",
+									  "SELECT city FROM landings WHERE id = ",
+									  "SELECT name FROM landings WHERE id = "};
+	
 	
 	String connection = "jdbc:mysql://localhost:3306/projekt?user=root&password=programowanieZdarzeniowe";
 	
 	static String cityId;
+	static String planeId;
+	static int planeIdInList;
 	
 	
 	

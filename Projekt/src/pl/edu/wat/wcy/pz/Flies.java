@@ -48,6 +48,7 @@ public class Flies {
 				
 				Setup.planes.add(new Plane(planeId, planeFrom, planeTo,iterator));
 				Setup.planesGUI.add(new PlaneGUI(iterator));
+				
 				iterator++;
 				
 			}

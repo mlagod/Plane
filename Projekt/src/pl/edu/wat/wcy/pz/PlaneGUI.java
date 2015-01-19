@@ -74,7 +74,7 @@ public void paintComponent(Graphics g){
         
         
         
-       System.out.println("PlaneGUI"+Setup.planes.get(0).getXPosition()+" " + Setup.planes.get(0).getYPosition());
+     //  System.out.println("PlaneGUI"+Setup.planes.get(0).getXPosition()+" " + Setup.planes.get(0).getYPosition());
         
      //  System.out.println(""+ setPlaneDirection()+ " "+ Math.toDegrees(setPlaneDirection()));
     //  System.out.println(width+ " " + height);

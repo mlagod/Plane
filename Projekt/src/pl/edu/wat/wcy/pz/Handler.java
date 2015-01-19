@@ -33,6 +33,7 @@ public class Handler implements MouseListener{
 			public void run() {
 				
 				new Infogui();
+			
 				
 			}
 			
