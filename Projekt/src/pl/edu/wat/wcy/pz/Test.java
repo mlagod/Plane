@@ -1,12 +1,21 @@
 package pl.edu.wat.wcy.pz;
 
 import java.awt.EventQueue;
+import java.io.IOException;
 
 public class Test {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		//String s;
+		GetProperties p = new GetProperties();
+		try {
+			Database.connection += p.getValues();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		 EventQueue.invokeLater(new Runnable()
 	        {

@@ -20,6 +20,7 @@ public class PlaneInfoGui extends JFrame{
 
 	String[] data = {"Samolot :", "Z : ", "Do :"};
 	
+	
 	JLabel plane = new JLabel(data[0]);
 	JLabel from = new JLabel(data[1]);
 	JLabel to = new JLabel(data[2]);
@@ -27,15 +28,12 @@ public class PlaneInfoGui extends JFrame{
 	JPanel bcg = new JPanel();
 	
 	Database database = new Database();
-	
-	JButton pilots = new JButton("Piloci");
-	JButton stewards = new JButton("Stewardzi");
-	
+
 	
 	public PlaneInfoGui(){
 		
 		setTitle("Informacja o samolocie");
-		setSize(350,230);
+		setSize(350,160);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		setData();
@@ -80,8 +78,10 @@ public class PlaneInfoGui extends JFrame{
 		bcg.add(to);
 		
 		//bcg.setLayout(new FlowLayout());
-		bcg.add(pilots);
-		bcg.add(stewards);
+		
+		////pilots.addMouseListener(ih);
+	//	bcg.add(pilots);
+		//bcg.add(stewards);
 	
 		
 		this.add(bcg);

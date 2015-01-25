@@ -19,9 +19,10 @@ public class Database {
 									  "SELECT city FROM landings WHERE id = ",
 									  "SELECT name FROM landings WHERE id = "};
 	
+
 	
-	String connection = "jdbc:mysql://localhost:3306/projekt?user=root&password=programowanieZdarzeniowe";
-	
+	//String connection = "jdbc:mysql://localhost:3306/projekt?user=root&password=programowanieZdarzeniowe";
+	static String connection = "jdbc:mysql://localhost:3306/projekt?";
 	static String cityId;
 	static String planeId;
 	static int planeIdInList;
@@ -45,6 +46,7 @@ public class Database {
 			//System.out.println("ID | COUNTRY | CITY");
 			while(rs.next()){
 				sendInfo(rs);
+				
 			}
 			con.close();
 		}catch (SQLException | ClassNotFoundException e) {
